@@ -3,7 +3,7 @@ import Link from "next/link";
 const Login = () => {
   return (
     <>
-      <main className="flex flex-col items-center justify-center min-h-screen w-full text-center px-20 ">
+      <main className="bg-white flex flex-col items-center justify-center min-h-screen w-full text-center px-20 ">
         <div className="rounded-2xl flex w-2/3 max-w-4xl">
           <div className=" bg-slate-400 w-3/5 p-5 rounded-tl-2xl rounded-bl-2xl ">
             <div className="py-10">
@@ -37,7 +37,7 @@ const Login = () => {
               Sign Up
             </Link>
           </div>
-          <div className=" bg-white w-3/5 p-5 rounded-tr-2xl rounded-br-2xl py-36 px-12">
+          <div className=" bg-red-200 w-3/5 p-5 rounded-tr-2xl rounded-br-2xl py-36 px-12">
             <h1 className="text-3xl font-bold mb-2 text-black">Hey There!</h1>
             <div className="border-2 w-24 border-green-500 inline-block mb-2 "></div>
             <p className="text-lg mb-8 text-black ">
