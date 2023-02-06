@@ -1,4 +1,4 @@
-import Navbar from "../navbar";
+import Navbar from "../components/navbar";
 
 const addPassword = () => {
   return (
@@ -39,33 +39,19 @@ const addPassword = () => {
               required
             />
           </div>
+
           <div class="mb-6">
             <label
               for="text"
               class="block mb-2 ml-1 text-sm font-medium text-gray-900 "
             >
-              Site Title
+              Username
             </label>
             <input
               type="text"
               id="text"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              placeholder="Ex: PassMan"
-              required
-            />
-          </div>
-          <div class="mb-6">
-            <label
-              for="text"
-              class="block mb-2 ml-1 text-sm font-medium text-gray-900 "
-            >
-              Site Title
-            </label>
-            <input
-              type="text"
-              id="text"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              placeholder="Ex: PassMan"
+              placeholder="Ex: Pass@Man"
               required
             />
           </div>
@@ -121,7 +107,7 @@ const addPassword = () => {
           <div className="flex justify-end">
             <button
               type="submit"
-              class="text-white flex flex-col justify-end bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center "
+              className="text-white flex flex-col sm:text-center justify-end bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center "
             >
               Add
             </button>
