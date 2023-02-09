@@ -1,5 +1,6 @@
 import Navbar from "../components/navbar";
 import CardComponent from "../components/cards";
+import Link from "next/link";
 
 const allPasswords = () => {
   return (
@@ -35,12 +36,11 @@ const allPasswords = () => {
         <CardComponent />
       </div>
       <div>
-     
-        <button
-          title="Add"
+        <Link
           class="fixed z-90 bottom-10 right-8 bg-blue-600 w-20 h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl hover:bg-blue-700 hover:drop-shadow-2xl duration-300"
-        >
-        </button>
+          href="/addPassword"
+        > +
+        </Link>
       </div>
     </div>
   );
