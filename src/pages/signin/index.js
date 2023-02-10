@@ -9,35 +9,35 @@ const Login = () => {
   const [tokens, setTokens] = useState({});
   const [isTokenPresent, setIsTokenPresent] = useState(false);
 
-  const newTokenGenerator = async () => {
-    await axios(`${URL}/auth/refresh-token`, {
-      headers: { Authorization: tokens.refreshToken },
-    })
-      .then((response) => {
-        setTokens(response.data);
-        return response.data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const newTokenGenerator = async () => {
+  //   await axios(`${URL}/auth/refresh-token`, {
+  //     headers: { Authorization: tokens.refreshToken },
+  //   })
+  //     .then((response) => {
+  //       setTokens(response.data);
+  //       return response.data;
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  const axiosJWT = axios.create();
+  // const axiosJWT = axios.create();
 
-  axiosJWT.interceptors.request.use(
-    async (config) => {
-      let currentDate = new Date();
-      const decodedToken = jwt_decode(user.accessToken);
-      if (decodedToken.exp * 1000 < currentDate.getTime()) {
-        const data = await newTokenGenerator();
-        config.headers["authorization"] = "Bearer " + data.accessToken;
-      }
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
+  // axiosJWT.interceptors.request.use(
+  //   async (config) => {
+  //     let currentDate = new Date();
+  //     const decodedToken = jwt_decode(user.accessToken);
+  //     if (decodedToken.exp * 1000 < currentDate.getTime()) {
+  //       const data = await newTokenGenerator();
+  //       config.headers["authorization"] = "Bearer " + data.accessToken;
+  //     }
+  //     return config;
+  //   },
+  //   (error) => {
+  //     return Promise.reject(error);
+  //   }
+  // );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -78,7 +78,7 @@ const Login = () => {
                 name="email"
                 value={user.email}
                 onChange={handleChange}
-                id="large-input"
+                id="large-input1"
                 className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
@@ -88,7 +88,7 @@ const Login = () => {
                 value={user.password}
                 onChange={handleChange}
                 type="password"
-                id="large-input"
+                id="large-input2"
                 className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>

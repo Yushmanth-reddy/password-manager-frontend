@@ -1,6 +1,40 @@
+import axios from "axios";
 import Link from "next/link";
+import { useState } from "react";
 
 const SignUp = () => {
+  const URL = "http://localhost:3300";
+  const [user, setUser] = useState({ email: "", name: "", password: "" });
+  const [tokens, setTokens] = useState({});
+  const [isTokenPresent, setIsTokenPresent] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser({
+      ...user,
+      [name]: value,
+    });
+  };
+
+  const handleSignup = async () => {
+    await axios
+      .post(`${URL}/auth/signup`, user)
+      .then((response) => {
+        if (Object.keys(response.data).length === 2) {
+          setTokens(response.data);
+          setIsTokenPresent(true);
+          console.log(tokens);
+        } else {
+          console.log(response.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsTokenPresent(false);
+      });
+    console.log(user);
+  };
+
   return (
     <>
       <main className="flex flex-col items-center justify-center min-h-screen w-full text-center ">
@@ -21,20 +55,41 @@ const SignUp = () => {
               <div className="mb-6">
                 <input
                   type="text"
-                  id="large-input"
+                  id="large-input1"
+                  name="email"
+                  value={user.email}
+                  onChange={handleChange}
                   className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
               </div>
               <div className="mb-6">
                 <input
                   type="text"
-                  id="large-input"
+                  id="large-input2"
+                  name="name"
+                  value={user.name}
+                  onChange={handleChange}
                   className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
               </div>
-              <button>
-                <Link  href="/home" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">SignUp</Link>
-            
+              <div className="mb-6">
+                <input
+                  type="password"
+                  id="large-input3"
+                  name="password"
+                  value={user.password}
+                  onChange={handleChange}
+                  className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
+              <button onClick={handleSignup}>
+                {/* <Link
+                  href={isTokenPresent ? "/home" : "/"}
+                  className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                  onClick={handleSignup}
+                > */}
+                SignUp
+                {/* </Link> */}
               </button>
 
               <p className="text-lg mb-4 mt-6">

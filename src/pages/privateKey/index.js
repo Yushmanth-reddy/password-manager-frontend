@@ -1,6 +1,29 @@
+import axios from "axios";
 import Link from "next/link";
+import { useState } from "react";
+// import { tokens } from "../signin/index";
 
-export default function Login() {
+export default function PrivateKey() {
+  const URL = "http://localhost:3300";
+  const [privateKey, setPrivateKey] = useState("");
+
+  const handleChange = (e) => {
+    setPrivateKey(e.target.value);
+  };
+
+  const checkPrivate = () => {
+    axios
+      .post(`${URL}/key/storeKey`, {
+        headers: { Authorization: tokens.accessToken },
+      })
+      .then((Response) => {
+        console.log(Response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
       <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
@@ -11,12 +34,15 @@ export default function Login() {
         <form className="mt-6">
           <div className="mb-2">
             <label
-              for="password"
+              // for="password"
               className="block text-sm font-semibold text-gray-800"
             >
               Private Key
             </label>
             <input
+              name="privateKey"
+              value={privateKey}
+              onChange={handleChange}
               type="password"
               className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
             />
